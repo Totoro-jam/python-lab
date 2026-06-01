@@ -2,7 +2,6 @@
 
 import pandas as pd
 import pytest
-
 from pylab09.pd_analysis import (
     daily_revenue,
     load_sales_data,

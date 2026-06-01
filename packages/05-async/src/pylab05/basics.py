@@ -43,6 +43,7 @@ async def async_range(start: int, stop: int, delay: float = 0.0) -> AsyncGenerat
 
 async def to_thread_demo(data: list[int]) -> int:
     """asyncio.to_thread 桥接同步阻塞代码。"""
+
     def heavy_computation(nums: list[int]) -> int:
         # 模拟 CPU 密集操作
         return sum(x * x for x in nums)

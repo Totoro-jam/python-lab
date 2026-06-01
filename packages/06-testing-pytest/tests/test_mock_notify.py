@@ -3,8 +3,6 @@
 import os
 from unittest.mock import Mock
 
-import pytest
-
 from pylab06.user_service import InMemoryUserRepo, UserService
 
 
@@ -54,5 +52,6 @@ class TestMonkeypatch:
     def test_monkeypatch_attr(self, monkeypatch):
         """monkeypatch 修改模块属性。"""
         import pylab06.user_service as mod
+
         monkeypatch.setattr(mod, "__name__", "patched")
         assert mod.__name__ == "patched"

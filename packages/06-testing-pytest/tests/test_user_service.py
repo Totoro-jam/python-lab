@@ -1,11 +1,10 @@
 """UserService 测试：fixture 工厂、monkeypatch、parametrize。"""
 
 import pytest
-
 from pylab06.user_service import InMemoryUserRepo, User, UserService
 
-
 # --- Fixture 工厂模式 ---
+
 
 @pytest.fixture
 def repo() -> InMemoryUserRepo:
@@ -20,12 +19,15 @@ def service(repo: InMemoryUserRepo) -> UserService:
 @pytest.fixture
 def user_factory(service: UserService):
     """Fixture 工厂：返回一个创建用户的函数。"""
+
     def _create(name: str = "Alice", email: str = "alice@example.com") -> User:
         return service.register(name, email)
+
     return _create
 
 
 # --- 基础测试 ---
+
 
 class TestRegister:
     def test_register_success(self, service: UserService):
@@ -46,7 +48,9 @@ class TestRegister:
         ],
         ids=["empty-name", "blank-name", "bad-email"],
     )
-    def test_register_validation(self, service: UserService, name: str, email: str, error_match: str):
+    def test_register_validation(
+        self, service: UserService, name: str, email: str, error_match: str
+    ):
         with pytest.raises(ValueError, match=error_match):
             service.register(name, email)
 

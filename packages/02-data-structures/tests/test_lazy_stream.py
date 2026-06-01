@@ -59,7 +59,11 @@ class TestMakeMultiplier:
 
 class TestComposePipeline:
     def test_basic(self):
-        add_one = lambda x: x + 1
-        double = lambda x: x * 2
+        def add_one(x):
+            return x + 1
+
+        def double(x):
+            return x * 2
+
         pipeline = compose_pipeline(add_one, double)
         assert pipeline(3) == 8  # (3+1)*2

@@ -4,8 +4,11 @@
 """
 
 from datetime import datetime
+from typing import Generic, TypeVar
 
 from pydantic import BaseModel, Field, field_validator, model_validator
+
+T = TypeVar("T")
 
 
 class PydanticUser(BaseModel):
@@ -37,7 +40,7 @@ class PydanticUser(BaseModel):
         return self
 
 
-class PaginatedResponse[T](BaseModel):
+class PaginatedResponse(BaseModel, Generic[T]):
     """泛型分页响应（pydantic v2 支持 Generic）。"""
 
     items: list[T]

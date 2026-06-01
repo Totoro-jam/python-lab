@@ -2,8 +2,7 @@
 
 import pytest
 from pydantic import ValidationError
-
-from pylab03.pydantic_user import PydanticUser, PaginatedResponse
+from pylab03.pydantic_user import PaginatedResponse, PydanticUser
 
 
 class TestPydanticUser:

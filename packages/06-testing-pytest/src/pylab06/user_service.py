@@ -1,6 +1,6 @@
 """带外部依赖的服务层：演示如何通过接口隔离做到可测试。"""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Protocol
 
 

@@ -1,7 +1,5 @@
 """容器工具测试。"""
 
-import pytest
-
 from pylab02.containers import (
     group_by_key,
     insort_demo,

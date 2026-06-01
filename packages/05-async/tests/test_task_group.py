@@ -1,8 +1,5 @@
 """TaskGroup 测试。"""
 
-import asyncio
-import pytest
-
 from pylab05.task_group import cancel_demo, parallel_fetch, process_with_timeout
 
 

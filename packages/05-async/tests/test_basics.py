@@ -1,8 +1,5 @@
 """asyncio 基础测试。"""
 
-import asyncio
-import pytest
-
 from pylab05.basics import async_range, fetch_all, timed_operation, to_thread_demo
 
 

@@ -2,7 +2,6 @@
 
 import pytest
 from fastapi.testclient import TestClient
-
 from pylab10.app import create_app
 from pylab10.store import TodoStore
 

@@ -3,7 +3,7 @@
 TypedDict 只做类型注解，不做运行时校验，适合 JSON 数据的类型标注。
 """
 
-from typing import TypedDict, Required, NotRequired
+from typing import NotRequired, Required, TypedDict
 
 
 class UserDict(TypedDict):

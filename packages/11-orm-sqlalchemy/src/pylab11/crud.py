@@ -32,11 +32,7 @@ class UserCRUD:
 
     def get_with_posts(self, user_id: int) -> User | None:
         """使用 selectinload 防止 N+1。"""
-        stmt = (
-            select(User)
-            .where(User.id == user_id)
-            .options(selectinload(User.posts))
-        )
+        stmt = select(User).where(User.id == user_id).options(selectinload(User.posts))
         return self._session.scalars(stmt).first()
 
     def deactivate(self, user_id: int) -> User | None:

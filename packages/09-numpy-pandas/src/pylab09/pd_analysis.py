@@ -52,7 +52,4 @@ def top_products(df: pd.DataFrame, n: int = 3) -> pd.DataFrame:
 
 def daily_revenue(df: pd.DataFrame) -> pd.DataFrame:
     """按日汇总收入（时间序列）。"""
-    return (
-        df.groupby("date", as_index=False)
-        .agg(revenue=("revenue", "sum"))
-    )
+    return df.groupby("date", as_index=False).agg(revenue=("revenue", "sum"))

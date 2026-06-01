@@ -1,6 +1,6 @@
 """内存存储层（演示用，生产用数据库）。"""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 
 

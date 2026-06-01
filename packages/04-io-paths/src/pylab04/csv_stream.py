@@ -12,8 +12,7 @@ def stream_csv(path: Path) -> Generator[dict[str, str], None, None]:
     """
     with path.open(mode="r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
-        for row in reader:
-            yield row
+        yield from reader
 
 
 def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str]) -> None:

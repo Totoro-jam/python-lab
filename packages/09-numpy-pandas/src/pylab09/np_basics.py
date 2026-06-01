@@ -16,7 +16,7 @@ def vectorized_distance(
     if origin is None:
         origin = np.zeros(points.shape[1])
     diff = points - origin  # broadcasting
-    return np.sqrt(np.sum(diff ** 2, axis=1))
+    return np.sqrt(np.sum(diff**2, axis=1))
 
 
 def boolean_mask_filter(

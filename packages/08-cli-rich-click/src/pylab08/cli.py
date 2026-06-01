@@ -1,7 +1,7 @@
 """文件统计 CLI 工具：演示 typer 子命令、rich 输出、进度条。"""
 
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -47,11 +47,12 @@ def stats(
 
         console.print(table)
     else:
-        console.print(Panel(
-            f"[bold]{len(files)}[/bold] files, "
-            f"[bold]{total_size:,}[/bold] bytes total",
-            title="Statistics",
-        ))
+        console.print(
+            Panel(
+                f"[bold]{len(files)}[/bold] files, [bold]{total_size:,}[/bold] bytes total",
+                title="Statistics",
+            )
+        )
 
 
 @app.command()
@@ -95,6 +96,7 @@ def find(
 def version() -> None:
     """显示版本信息。"""
     from pylab08 import __version__
+
     console.print(f"pylab08 v{__version__}")
 
 

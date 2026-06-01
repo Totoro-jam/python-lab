@@ -1,11 +1,10 @@
 """ORM 测试：SQLite in-memory + transaction rollback per test。"""
 
 import pytest
+from pylab11.crud import PostCRUD, UserCRUD
+from pylab11.models import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
-
-from pylab11.models import Base, Post, User
-from pylab11.crud import PostCRUD, UserCRUD
 
 
 @pytest.fixture
@@ -99,7 +98,9 @@ class TestRelationships:
         assert user_with_posts is not None
         assert len(user_with_posts.posts) == 2
 
-    def test_post_author_relationship(self, user_crud: UserCRUD, post_crud: PostCRUD, session: Session):
+    def test_post_author_relationship(
+        self, user_crud: UserCRUD, post_crud: PostCRUD, session: Session
+    ):
         user = user_crud.create("Alice", "alice@x.com")
         post = post_crud.create("My Post", user.id)
         # 通过 post.author 反向获取 User

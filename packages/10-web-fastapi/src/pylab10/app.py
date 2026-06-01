@@ -48,8 +48,12 @@ def create_app(store: TodoStore | None = None) -> FastAPI:
         return PaginatedTodos(
             items=[
                 TodoResponse(
-                    id=i.id, title=i.title, description=i.description,
-                    priority=i.priority, completed=i.completed, created_at=i.created_at,
+                    id=i.id,
+                    title=i.title,
+                    description=i.description,
+                    priority=i.priority,
+                    completed=i.completed,
+                    created_at=i.created_at,
                 )
                 for i in items
             ],
@@ -67,8 +71,12 @@ def create_app(store: TodoStore | None = None) -> FastAPI:
         if item is None:
             raise HTTPException(status_code=404, detail="Todo not found")
         return TodoResponse(
-            id=item.id, title=item.title, description=item.description,
-            priority=item.priority, completed=item.completed, created_at=item.created_at,
+            id=item.id,
+            title=item.title,
+            description=item.description,
+            priority=item.priority,
+            completed=item.completed,
+            created_at=item.created_at,
         )
 
     @app.patch("/todos/{todo_id}", response_model=TodoResponse)
@@ -82,8 +90,12 @@ def create_app(store: TodoStore | None = None) -> FastAPI:
         if item is None:
             raise HTTPException(status_code=404, detail="Todo not found")
         return TodoResponse(
-            id=item.id, title=item.title, description=item.description,
-            priority=item.priority, completed=item.completed, created_at=item.created_at,
+            id=item.id,
+            title=item.title,
+            description=item.description,
+            priority=item.priority,
+            completed=item.completed,
+            created_at=item.created_at,
         )
 
     @app.delete("/todos/{todo_id}", status_code=204)

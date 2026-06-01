@@ -1,12 +1,11 @@
 """hypothesis 属性测试：让框架帮你找 corner case。"""
 
 import pytest
+from pylab06.user_service import InMemoryUserRepo, UserService
 
 hypothesis = pytest.importorskip("hypothesis")
-from hypothesis import given, assume, settings  # noqa: E402
+from hypothesis import given, settings  # noqa: E402
 from hypothesis import strategies as st  # noqa: E402
-
-from pylab06.user_service import InMemoryUserRepo, UserService
 
 
 class TestHypothesis:

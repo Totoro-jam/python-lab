@@ -1,9 +1,9 @@
 """pylab09 — NumPy 与 Pandas 数据处理实战。"""
 
 from .np_basics import (
-    vectorized_distance,
     boolean_mask_filter,
     moving_average,
+    vectorized_distance,
 )
 from .pd_analysis import (
     load_sales_data,

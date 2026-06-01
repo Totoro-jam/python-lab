@@ -25,6 +25,7 @@ def atomic_write_text(path: Path, content: str, encoding: str = "utf-8") -> None
         tmp.flush()
         # 确保数据落盘
         import os
+
         os.fsync(tmp.fileno())
         tmp_path = Path(tmp.name)
 

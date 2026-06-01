@@ -25,6 +25,7 @@ class HttpResponse:
 
     def json(self) -> Any:
         import json
+
         return json.loads(self.body)
 
 

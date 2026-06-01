@@ -6,6 +6,9 @@ version = "0.0.0"
 description = "Hands-on lab for learning modern Python — typing, asyncio, pytest, httpx, fastapi, numpy/pandas, sqlalchemy, uv/ruff."
 requires-python = ">=3.11"
 
+[dependency-groups]
+dev = ["ruff>=0.8", "pytest>=8", "pytest-asyncio>=1"]
+
 [tool.uv.workspace]
 members = ["packages/*"]
 

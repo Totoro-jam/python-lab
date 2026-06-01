@@ -1,7 +1,7 @@
 """Protocol 演示：结构化子类型（鸭子类型的类型注解版）。"""
 
-from typing import Protocol, runtime_checkable
 import json
+from typing import Protocol, runtime_checkable
 
 
 @runtime_checkable

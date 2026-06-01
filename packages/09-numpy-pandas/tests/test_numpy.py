@@ -1,8 +1,6 @@
 """NumPy 测试。"""
 
 import numpy as np
-import pytest
-
 from pylab09.np_basics import (
     boolean_mask_filter,
     moving_average,

@@ -1,8 +1,8 @@
 """惰性流处理：itertools + 生成器。"""
 
 from collections.abc import Generator, Iterable, Iterator
-from functools import cache, lru_cache, partial, reduce, wraps
-from itertools import chain, groupby, accumulate, combinations
+from functools import cache, partial, reduce
+from itertools import accumulate, chain
 from pathlib import Path
 from typing import TypeVar
 
@@ -16,7 +16,7 @@ def stream_large_file(path: Path) -> Generator[str, None, None]:
             yield line.rstrip("\n")
 
 
-def chunked[T](iterable: Iterable[T], size: int) -> Iterator[list[T]]:
+def chunked(iterable: Iterable[T], size: int) -> Iterator[list[T]]:
     """将可迭代对象按 size 切片。
 
     >>> list(chunked([1,2,3,4,5], 2))
@@ -35,7 +35,7 @@ def chunked[T](iterable: Iterable[T], size: int) -> Iterator[list[T]]:
         yield chunk
 
 
-def flatten[T](nested: Iterable[Iterable[T]]) -> Iterator[T]:
+def flatten(nested: Iterable[Iterable[T]]) -> Iterator[T]:
     """展平嵌套可迭代对象，等同 chain.from_iterable。"""
     return chain.from_iterable(nested)
 

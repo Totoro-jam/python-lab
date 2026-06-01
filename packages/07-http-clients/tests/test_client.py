@@ -28,9 +28,7 @@ class TestHttpClient:
 
     @respx.mock
     def test_post_success(self):
-        respx.post("https://api.example.com/users").mock(
-            return_value=Response(201, json={"id": 1})
-        )
+        respx.post("https://api.example.com/users").mock(return_value=Response(201, json={"id": 1}))
         with HttpClient(base_url="https://api.example.com") as client:
             resp = client.post("/users", json={"name": "Alice"})
             assert resp.status_code == 201
@@ -61,9 +59,7 @@ class TestHttpClient:
 
     @respx.mock
     def test_elapsed_tracked(self):
-        respx.get("https://api.example.com/ping").mock(
-            return_value=Response(200, text="pong")
-        )
+        respx.get("https://api.example.com/ping").mock(return_value=Response(200, text="pong"))
         with HttpClient(base_url="https://api.example.com") as client:
             resp = client.get("/ping")
             assert resp.elapsed_ms >= 0

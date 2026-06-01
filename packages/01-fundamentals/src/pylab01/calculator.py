@@ -3,7 +3,7 @@
 注意点：
 - 函数签名带类型注解（typing 那一章会展开讲）
 - 异常用具体的 ValueError，不裸 raise
-- docstring 演示 """
+- docstring 演示"""
 
 
 def add(a: float, b: float) -> float:

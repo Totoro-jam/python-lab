@@ -3,7 +3,7 @@
 演示: frozen, slots, field(default_factory), replace, asdict。
 """
 
-from dataclasses import dataclass, field, replace, asdict
+from dataclasses import asdict, dataclass, field, replace
 from datetime import datetime
 
 

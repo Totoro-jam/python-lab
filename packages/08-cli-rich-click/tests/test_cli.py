@@ -2,10 +2,8 @@
 
 from pathlib import Path
 
-import pytest
-from typer.testing import CliRunner
-
 from pylab08.cli import app
+from typer.testing import CliRunner
 
 runner = CliRunner()
 

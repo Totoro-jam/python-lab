@@ -13,11 +13,13 @@ from sqlalchemy.orm import (
 
 class Base(DeclarativeBase):
     """所有模型的基类。"""
+
     pass
 
 
 class User(Base):
     """用户表。"""
+
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -27,7 +29,9 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
 
     # one-to-many: User -> Posts
-    posts: Mapped[list["Post"]] = relationship(back_populates="author", cascade="all, delete-orphan")
+    posts: Mapped[list["Post"]] = relationship(
+        back_populates="author", cascade="all, delete-orphan"
+    )
 
     def __repr__(self) -> str:
         return f"User(id={self.id}, name={self.name!r}, email={self.email!r})"
@@ -35,6 +39,7 @@ class User(Base):
 
 class Post(Base):
     """文章表（与 User 一对多）。"""
+
     __tablename__ = "posts"
 
     id: Mapped[int] = mapped_column(primary_key=True)

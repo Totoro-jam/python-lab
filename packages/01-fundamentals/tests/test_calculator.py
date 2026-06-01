@@ -7,11 +7,10 @@
 """
 
 import pytest
-
 from pylab01 import add, divide, is_even
 
-
 # === AAA 结构：基础用法 ===
+
 
 def test_add_positive():
     # Arrange / Act
@@ -25,6 +24,7 @@ def test_add_with_zero():
 
 
 # === parametrize：同一逻辑跑多组数据 ===
+
 
 @pytest.mark.parametrize(
     ("a", "b", "expected"),
@@ -41,12 +41,14 @@ def test_add_table(a, b, expected):
 
 # === 浮点用 pytest.approx ===
 
+
 def test_floats_use_approx():
     # 0.1 + 0.2 ≠ 0.3，浮点比较必须 approx
     assert add(0.1, 0.2) == pytest.approx(0.3)
 
 
 # === 异常断言 ===
+
 
 def test_divide_by_zero_raises():
     with pytest.raises(ValueError, match="cannot divide by zero"):
@@ -58,6 +60,7 @@ def test_divide_normal():
 
 
 # === 用 class 分组（可选风格，pytest 不强制） ===
+
 
 class TestIsEven:
     def test_even_returns_true(self):
