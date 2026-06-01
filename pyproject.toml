@@ -1,0 +1,27 @@
+# 根 pyproject 只配仓库级元数据 + ruff 共用规则。
+# 真正的依赖装在每个 packages/NN-* 里。
+[project]
+name = "python-lab"
+version = "0.0.0"
+description = "Hands-on lab for learning modern Python — typing, asyncio, pytest, httpx, fastapi, numpy/pandas, sqlalchemy, uv/ruff."
+requires-python = ">=3.11"
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages"]
+pythonpath = []
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# E/F = pycodestyle/pyflakes 基础；I = isort；UP = pyupgrade；B = bugbear；SIM = simplify
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]   # 长行交给 formatter 处理
+
+[tool.ruff.format]
+quote-style = "double"
