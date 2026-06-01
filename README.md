@@ -46,7 +46,8 @@ Python 通识实验场。学完后能看懂 95% 的现代 Python 代码、能维
 ### 第一次
 
 ```bash
-# 安装 uv（推荐的依赖管理器，比 pip 快 10-100 倍）
+# 安装 uv（推荐的依赖管理器）
+# 更多安装方式见 https://github.com/astral-sh/uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # 跑某一章

@@ -9,6 +9,7 @@ dist/
 .eggs/
 .venv/
 venv/
+uv.lock
 env/
 .env
 .env.*.local

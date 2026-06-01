@@ -11,8 +11,7 @@ members = ["packages/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["packages"]
-pythonpath = []
-addopts = "-ra"
+asyncio_mode = "auto"
 
 [tool.ruff]
 line-length = 100
