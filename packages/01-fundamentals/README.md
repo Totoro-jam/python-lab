@@ -132,11 +132,24 @@ dependencies = []           # 运行时依赖
 dev = ["pytest>=8"]         # 开发依赖（pip install -e ".[dev]"）
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["hatchling"]            # 构建时安装的工具（类比 devDependencies 里的 vite）
+build-backend = "hatchling.build"   # 打包入口（新项目推荐 hatchling，轻量现代）
 ```
 
 **取代了**：`setup.py` + `requirements.txt` + `Pipfile` + 一堆配置散在各处。
+
+> **常见 build backend 对比**
+>
+> | | hatchling | setuptools | flit-core | poetry-core |
+> |---|---|---|---|---|
+> | 定位 | 现代默认选择 | 老牌标准（20+ 年） | 极简 | Poetry 生态绑定 |
+> | 配置 | pyproject.toml only | 可能还需 setup.cfg / setup.py | pyproject.toml only | pyproject.toml only |
+> | src layout | 原生支持 | 需要额外配置 | 不支持 | 支持 |
+> | 插件系统 | 有 | 有（过度复杂） | 无 | 无 |
+> | 构建速度 | 快 | 慢 | 快 | 快 |
+> | 适合 | 新项目、库、应用 | 遗留项目迁移 | 纯 Python 小库 | 已用 Poetry 的项目 |
+>
+> **选型建议**：新项目直接 hatchling，遇到老项目用 setuptools 也别急着换。
 
 ### 7. pytest：发现 + 跑测试
 
@@ -152,6 +165,18 @@ def test_add():
 ```
 
 失败时 pytest 输出 `2 + 3 == 5` 实际值是啥，比 `unittest.TestCase.assertEqual(...)` 干净 10 倍。
+
+> **pytest vs unittest 对比**
+>
+> | | pytest | unittest |
+> |---|---|---|
+> | 写法 | 普通函数 + `assert` | 类继承 + `self.assertXxx` |
+> | 前置/清理 | `@pytest.fixture`（灵活组合） | `setUp/tearDown`（固定层级） |
+> | 参数化 | `@pytest.mark.parametrize` | `subTest`（弱很多） |
+> | 插件生态 | 极其丰富（1000+） | 几乎没有 |
+> | 失败输出 | 完整表达式拆解 | 只告诉你"不相等" |
+>
+> unittest 是标准库自带的（模仿 Java JUnit），pytest 是 Pythonic 的第三方事实标准。新项目没有理由选 unittest。
 
 ## 代码导读
 
@@ -220,6 +245,29 @@ def transfer(amount):
 
 业务校验用 `raise ValueError(...)`，`assert` 留给测试和不变量调试。
 
+> **`raise` 与常见异常类型**
+>
+> `raise` = 主动抛出异常（类比 JS 的 `throw`，Rust 的 `panic!`）。
+>
+> ```python
+> raise ValueError("金额必须大于 0")
+> ```
+>
+> 常见内置异常：
+> - `ValueError` — 值不合法（类型对但内容不对）
+> - `TypeError` — 类型不对
+> - `KeyError` — 字典里没这个 key
+> - `FileNotFoundError` — 文件不存在
+>
+> 捕获用 `try/except`（类比 JS 的 `try/catch`）：
+>
+> ```python
+> try:
+>     divide(1, 0)
+> except ValueError as e:
+>     print(f"出错了: {e}")
+> ```
+
 ### 坑 5：mutable 默认参数（常见陷阱）
 
 ```python
@@ -230,6 +278,8 @@ append("b")  # ["a", "b"]  ← 不是新 list！
 ```
 
 修法：`target=None` 然后函数内 `if target is None: target = []`。
+
+> **规则**：默认参数只在函数定义时创建一次，所有调用共享同一个对象。因此默认参数永远只用不可变类型（`None`、`int`、`str`、`tuple`），别用 `[]`、`{}`、`set()`。
 
 ## 延伸阅读
 

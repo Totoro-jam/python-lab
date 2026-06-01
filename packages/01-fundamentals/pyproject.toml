@@ -6,19 +6,21 @@ requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8"]
+dev = ["pytest>=8"]  # 开发依赖，安装方式: uv sync --all-extras 或 pip install -e ".[dev]"
 
 [project.scripts]
+# CLI 入口点: 安装后可直接在终端运行 `pylab01 add 1 2`
+# 格式: "命令名" = "模块路径:函数名"
 pylab01 = "pylab01.__main__:main"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["hatchling"]            # 构建时需要的工具
+build-backend = "hatchling.build"   # 打包后端（新项目推荐 hatchling）
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pylab01"]
+packages = ["src/pylab01"]  # 告诉 hatchling 源码在 src/ 下（src layout 标准结构）
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "-ra"
+testpaths = ["tests"]  # pytest 只在这个目录下找测试文件
+addopts = "-ra"        # -r: 显示摘要, a: 包含所有非通过的用例（failed/skipped/error）
 pythonpath = ["src"]
